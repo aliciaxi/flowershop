@@ -1,0 +1,357 @@
+package florarie;
+import java.awt.EventQueue;
+
+import java.awt.Window;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+
+
+import java.awt.Button;
+import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.JSpinner;
+import javax.swing.JScrollBar;
+import javax.swing.JSlider;
+import javax.swing.JProgressBar;
+import javax.swing.AbstractButton;
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JToggleButton;
+import javax.swing.JComboBox;
+
+public class MainFrame extends JFrame {
+
+	 JPanel mainFrame;
+	private JTextField txtTot;
+	private JTextField txtTax;
+	private JTextField txtSub;
+	private JLabel lblNewLabell;
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainFrame frame = new MainFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MainFrame() {
+		setBackground(new Color(153, 153, 255));
+		setTitle("Florarie");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(200, 200, 775, 591);
+		mainFrame = new JPanel();
+		mainFrame.setBackground(new Color(192, 192, 192));
+		mainFrame.setToolTipText("");
+		mainFrame.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(mainFrame);
+		mainFrame.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Tipuri de flori");
+		lblNewLabel.setBackground(new Color(128, 128, 255));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 23));
+		lblNewLabel.setBounds(6, 14, 154, 45);
+		mainFrame.add(lblNewLabel);
+		
+		final JRadioButton radTran = new JRadioButton("Trandafiri");
+		radTran.setBackground(new Color(192, 192, 192));
+		radTran.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		radTran.setBounds(6, 75, 121, 39);
+		mainFrame.add(radTran);
+		
+		
+		final JRadioButton radBuj = new JRadioButton("Bujori");
+		radBuj.setBackground(new Color(192, 192, 192));
+		radBuj.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		radBuj.setBounds(6, 155, 121, 29);
+		mainFrame.add(radBuj);
+		
+		final JRadioButton radLal = new JRadioButton("Lalele");
+		radLal.setBackground(new Color(192, 192, 192));
+		radLal.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		radLal.setBounds(6, 116, 121, 37);
+		mainFrame.add(radLal);
+		
+		JTextArea txtrUnBuchetCu = new JTextArea();
+		txtrUnBuchetCu.setText("11 trandafiri: 150 lei ");
+		txtrUnBuchetCu.setBounds(269, 86, 225, 22);
+		mainFrame.add(txtrUnBuchetCu);
+		
+		txtTot = new JTextField();
+		txtTot.setBounds(316, 530, 96, 22);
+		mainFrame.add(txtTot);
+		txtTot.setColumns(10);
+		
+		txtTax = new JTextField();
+		txtTax.setBounds(316, 479, 96, 22);
+		mainFrame.add(txtTax);
+		txtTax.setColumns(10);
+		
+		txtSub = new JTextField();
+		txtSub.setBounds(316, 418, 96, 22);
+		mainFrame.add(txtSub);
+		txtSub.setColumns(10);
+		
+		JLabel Subtotal = new JLabel("Subtotal");
+		Subtotal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Subtotal.setBounds(167, 418, 59, 16);
+		mainFrame.add(Subtotal);
+		
+		JLabel lblNewLabel_2 = new JLabel("Tax");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_2.setBounds(181, 481, 45, 13);
+		mainFrame.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Total");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_3.setBounds(181, 532, 45, 13);
+		mainFrame.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("Informatii buchete de flori");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 23));
+		lblNewLabel_1.setBounds(269, 14, 266, 45);
+		mainFrame.add(lblNewLabel_1);
+		
+		JTextArea txtrLaleleEste = new JTextArea();
+		txtrLaleleEste.setText("15 lalele: 179 lei");
+		txtrLaleleEste.setBounds(269, 126, 225, 22);
+		mainFrame.add(txtrLaleleEste);
+		
+		JTextArea txtrBujori = new JTextArea();
+		txtrBujori.setText("7 bujori: 89 lei");
+		txtrBujori.setBounds(269, 161, 225, 22);
+		mainFrame.add(txtrBujori);
+		
+		JButton btnEnter = new JButton("Enter");
+		btnEnter.addActionListener(new ActionListener() {
+			private AbstractButton radBuch;
+
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				DecimalFormat df = new DecimalFormat("0.00");
+				double total;
+				double subtotal = 0;
+				final double TAXRATE = .08;
+				double tax;
+				
+				
+				
+				if (radTran.isSelected()) {
+					subtotal = subtotal + 150;
+				}else if (radLal.isSelected()) {
+					subtotal = subtotal + 179;
+				}else if (radBuj.isSelected()) {
+					subtotal = subtotal + 89;
+			
+				
+					
+				}
+				
+			   txtSub.setText(Double.toString(subtotal));
+			   
+			   subtotal = Double.parseDouble(txtSub.getText());
+			   tax = subtotal * TAXRATE;
+			   total = tax + subtotal;
+			   
+			   txtTax.setText(Double.toString(tax));
+			   txtTot.setText(Double.toString(total));
+			   
+			   txtTax.setText(df.format(tax));
+			   txtSub.setText(df.format(subtotal));
+			   txtTot.setText(df.format(total));
+			}
+		});
+		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnEnter.setBounds(6, 415, 85, 21);
+		mainFrame.add(btnEnter);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// clears all fields
+				
+				radTran.setSelected(false);
+				radLal.setSelected(false);
+				radBuj.setSelected(false);
+				txtTot.setText("");
+				txtSub.setText("");
+				txtTax.setText("");
+
+			}
+		});
+		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnClear.setBounds(6, 476, 85, 21);
+		mainFrame.add(btnClear);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnExit.setBounds(6, 527, 85, 21);
+		mainFrame.add(btnExit);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setBounds(740, 40, 45, 13);
+		mainFrame.add(lblNewLabel_4);
+		
+		JRadioButton radBuch = new JRadioButton("Buchet special ");
+		radBuch.setBackground(new Color(192, 192, 192));
+		radBuch.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		radBuch.setBounds(6, 191, 159, 21);
+		mainFrame.add(radBuch);
+		
+		JTextArea txtrLei = new JTextArea();
+		txtrLei.setText("300 lei");
+		txtrLei.setBounds(269, 193, 225, 22);
+		mainFrame.add(txtrLei);
+		
+		JLabel lblNewLabel_5 = new JLabel("Culori");
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 23));
+		lblNewLabel_5.setBounds(643, 14, 79, 45);
+		mainFrame.add(lblNewLabel_5);
+		
+		JCheckBox chckRos = new JCheckBox("Rosu");
+		chckRos.setFont(new Font("Tahoma", Font.BOLD, 15));
+		chckRos.setBounds(643, 86, 93, 21);
+		mainFrame.add(chckRos);
+		
+		JCheckBox chckGal = new JCheckBox("Galben");
+		chckGal.setFont(new Font("Tahoma", Font.BOLD, 15));
+		chckGal.setBounds(643, 109, 93, 21);
+		mainFrame.add(chckGal);
+		
+		JCheckBox chckRoz = new JCheckBox("Roz");
+		chckRoz.setFont(new Font("Tahoma", Font.BOLD, 15));
+		chckRoz.setBounds(643, 132, 93, 21);
+		mainFrame.add(chckRoz);
+		
+		JCheckBox chckAlb = new JCheckBox("Alb");
+		chckAlb.setFont(new Font("Tahoma", Font.BOLD, 15));
+		chckAlb.setBounds(643, 155, 93, 21);
+		mainFrame.add(chckAlb);
+		
+		JLabel lblNewLabel_6 = new JLabel("Mod de ingrijire:");
+		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel_6.setBounds(0, 257, 226, 45);
+		mainFrame.add(lblNewLabel_6);
+		
+		JCheckBox chckMov = new JCheckBox("Mov");
+		chckMov.setFont(new Font("Tahoma", Font.BOLD, 15));
+		chckMov.setBounds(643, 178, 93, 21);
+		mainFrame.add(chckMov);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(545, 415, -133, 22);
+		mainFrame.add(textArea);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(505, 126, 30, 23);
+		mainFrame.add(spinner_1);
+		
+		JSpinner spinner_2 = new JSpinner();
+		spinner_2.setBounds(505, 162, 30, 22);
+		mainFrame.add(spinner_2);
+		
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(505, 191, 30, 25);
+		mainFrame.add(spinner_3);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(504, 87, 31, 22);
+		mainFrame.add(spinner);
+		
+		Box horizontalBox = Box.createHorizontalBox();
+		horizontalBox.setBounds(534, 322, 59, -54);
+		mainFrame.add(horizontalBox);
+		
+		JTextArea txtrEsteNecesarS = new JTextArea();
+		txtrEsteNecesarS.setText("sa tineti florile in apa");
+		txtrEsteNecesarS.setBounds(269, 276, 493, 22);
+		mainFrame.add(txtrEsteNecesarS);
+		
+		JTextArea txtrTaiati = new JTextArea();
+		txtrTaiati.setText("taiati varful tijelor de la flori cca. 2-3 cm");
+		txtrTaiati.setBounds(269, 299, 493, 22);
+		mainFrame.add(txtrTaiati);
+		
+		JTextArea txtrIndepartatiFrunzeleCare = new JTextArea();
+		txtrIndepartatiFrunzeleCare.setText("indepartati frunzele care ajung in apa de pe tijele de flori");
+		txtrIndepartatiFrunzeleCare.setBounds(269, 322, 493, 22);
+		mainFrame.add(txtrIndepartatiFrunzeleCare);
+		
+
+		JLabel lblNewLabel_8 = new JLabel("New label");
+		lblNewLabel_8.setIcon(new ImageIcon("C:\\Users\\ALICIA\\Desktop\\florarie\\trandafir.png"));
+		lblNewLabel_8.setBounds(170, 40, 51, 65);
+		mainFrame.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("New label");
+		lblNewLabel_9.setIcon(new ImageIcon("C:\\Users\\ALICIA\\Desktop\\florarie\\tulip.png"));
+		lblNewLabel_9.setBounds(121, 96, 45, 53);
+		mainFrame.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("New label");
+		lblNewLabel_10.setIcon(new ImageIcon("D:\\Facultate ALICIA\\bujori.png"));
+		lblNewLabel_10.setBounds(204, 126, 45, 54);
+		mainFrame.add(lblNewLabel_10);
+		
+		JLabel lblNewLabel_11 = new JLabel("New label");
+		lblNewLabel_11.setIcon(new ImageIcon("C:\\Users\\ALICIA\\Desktop\\florarie\\buchet.png"));
+		lblNewLabel_11.setBounds(171, 181, 55, 45);
+		mainFrame.add(lblNewLabel_11);
+		
+		Button button = new Button("Next frame");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SecondFrame sf = new SecondFrame();
+				sf.secondFrame.setVisible(true);
+				//frame.dispose();
+			}
+		});
+		button.setFont(new Font("Arial", Font.PLAIN, 15));
+		button.setBounds(625, 515, 126, 29);
+		mainFrame.add(button);
+		
+	
+		
+	
+		
+		
+	}
+	}
+
+
+
+
+
+
+

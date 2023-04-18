@@ -1,0 +1,132 @@
+package florarie;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Button;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
+
+public class SecondFrame {
+
+	JFrame secondFrame;
+	private JTextField txtLivrareGratuita;
+	private JTextField txtComenziflowershopjavaapp;
+	private JTextField textField_2;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SecondFrame window = new SecondFrame();
+					window.secondFrame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public SecondFrame() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		secondFrame = new JFrame();
+		secondFrame.getContentPane().setBackground(new Color(192, 192, 192));
+		secondFrame.setTitle("Florarie");
+		secondFrame.setBounds(100, 100, 683, 597);
+		secondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		secondFrame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Cautarea florilor dupa:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(31, 23, 261, 49);
+		secondFrame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Pret :");
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 19));
+		lblNewLabel_1.setBounds(133, 82, 57, 26);
+		secondFrame.getContentPane().add(lblNewLabel_1);
+		
+		JSlider slider = new JSlider();
+		slider.setMinorTickSpacing(2);
+		slider.setMaximum(400);
+		slider.setMinimum(30);
+		slider.setBounds(61, 142, 200, 22);
+		secondFrame.getContentPane().add(slider);
+		
+		JLabel lblNewLabel_2 = new JLabel("30 lei");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(10, 151, 45, 13);
+		secondFrame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("400 lei");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(278, 151, 45, 13);
+		secondFrame.getContentPane().add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Mesaj scris alaturi de comanda:");
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel_4.setBounds(0, 252, 277, 43);
+		secondFrame.getContentPane().add(lblNewLabel_4);
+		
+		JTextArea txtrScrieAici = new JTextArea();
+		txtrScrieAici.setText("Scrie aici...");
+		txtrScrieAici.setBounds(343, 252, 251, 38);
+		secondFrame.getContentPane().add(txtrScrieAici);
+		
+		JLabel lblNewLabel_5 = new JLabel("Buchet de flori dupa cerintele clientului:");
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_5.setBounds(0, 347, 323, 37);
+		secondFrame.getContentPane().add(lblNewLabel_5);
+		
+		JTextArea txtrNoteazaCerinteAici = new JTextArea();
+		txtrNoteazaCerinteAici.setText("Noteaza cerinte aici...");
+		txtrNoteazaCerinteAici.setBounds(343, 347, 251, 37);
+		secondFrame.getContentPane().add(txtrNoteazaCerinteAici);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Buchet predefinit:");
+		chckbxNewCheckBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		chckbxNewCheckBox.setBounds(61, 398, 129, 37);
+		secondFrame.getContentPane().add(chckbxNewCheckBox);
+		
+		txtLivrareGratuita = new JTextField();
+		txtLivrareGratuita.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtLivrareGratuita.setText("Livrare gratuita");
+		txtLivrareGratuita.setBounds(31, 515, 118, 26);
+		secondFrame.getContentPane().add(txtLivrareGratuita);
+		txtLivrareGratuita.setColumns(10);
+		
+		txtComenziflowershopjavaapp = new JTextField();
+		txtComenziflowershopjavaapp.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txtComenziflowershopjavaapp.setText("comenzi@flowershopjavaapp");
+		txtComenziflowershopjavaapp.setBounds(459, 10, 200, 49);
+		secondFrame.getContentPane().add(txtComenziflowershopjavaapp);
+		txtComenziflowershopjavaapp.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textField_2.setText("0723986542");
+		textField_2.setBounds(519, 515, 118, 26);
+		secondFrame.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+	}
+}
